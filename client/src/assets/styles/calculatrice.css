@@ -1,0 +1,97 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container-calculatrice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  height: 90%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.container-input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-calculatrice {
+  width: 100%;
+  margin: 20px;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  font-size: 35px;
+}
+
+.container-lower-part {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.container-keyboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
+.container-calculation-buttons {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding: 10px;
+  width: 70px;
+}
+
+.plus-button {
+  height: 25%;
+  width: 100%;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s;
+  margin-bottom: 10px;
+}
+
+.equal-button {
+  width: 100%;
+  height: 75%;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.equal-button:hover {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.number-button {
+  font-size: 20px;
+  padding: 17px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.number-button:hover {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
