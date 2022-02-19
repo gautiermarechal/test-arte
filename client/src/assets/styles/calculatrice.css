@@ -8,15 +8,17 @@
 
 .container-calculatrice {
   display: flex;
+  padding: 20px;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 80%;
+  width: 600px;
   height: 90%;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .container-input {
+  margin: 10px;
   display: flex;
   align-items: center;
   width: 100%;
@@ -43,7 +45,7 @@
   grid-template-columns: repeat(3, 1fr);
   width: 100%;
   height: 100%;
-  padding: 10px;
+  margin: 20px;
 }
 
 .container-calculation-buttons {
@@ -51,7 +53,6 @@
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
-  padding: 10px;
   width: 70px;
 }
 
@@ -84,7 +85,7 @@
 
 .number-button {
   font-size: 20px;
-  padding: 17px;
+  padding: 20px;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -94,4 +95,8 @@
 
 .number-button:hover {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.result-span {
+  font-size: 30px;
 }

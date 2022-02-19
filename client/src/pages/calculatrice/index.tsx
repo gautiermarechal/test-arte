@@ -5,6 +5,7 @@ import CalculationPayload from "../../assets/types/calculationPayload";
 import CalculationResponse from "../../assets/types/calculationResponse";
 import { ReactComponent as DeleteLogo } from "../../assets/images/delete.svg";
 import { ReactComponent as ClearLogo } from "../../assets/images/clear.svg";
+import Spinner from "../../components/spinner";
 
 function Calculatrice() {
   const [premierNombre, setPremierNombre] = useState<string | undefined>(
@@ -70,31 +71,38 @@ function Calculatrice() {
   }
 
   function calculate(): void {
-    setIsLoading(true);
-    const parsedPremierNombre = premierNombre ? parseFloat(premierNombre) : -1;
-    const parsedSecondNombre = secondNombre ? parseFloat(secondNombre) : -1;
-    fetch(
-      process.env.API_URL
-        ? `${process.env.API_URL}/add`
-        : "http://localhost:4000/add",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          premierNombre: parsedPremierNombre,
-          secondNombre: parsedSecondNombre,
-        } as CalculationPayload),
-      }
-    )
-      .then((res) => res.json())
-      .then((json: CalculationResponse) => {
-        setResult(json.resultat);
-        setIsLoading(false);
-      })
-      .catch((err: Error) => {
-        setIsLoading(false);
-        setError(err.message);
-      });
+    if (premierNombre && secondNombre) {
+      setIsLoading(true);
+      const parsedPremierNombre = premierNombre
+        ? parseFloat(premierNombre)
+        : -1;
+      const parsedSecondNombre = secondNombre ? parseFloat(secondNombre) : -1;
+      fetch(
+        process.env.API_URL
+          ? `${process.env.API_URL}/add`
+          : "http://localhost:4000/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            premierNombre: parsedPremierNombre,
+            secondNombre: parsedSecondNombre,
+          } as CalculationPayload),
+        }
+      )
+        .then((res) => res.json())
+        .then((json: CalculationResponse) => {
+          setResult(json.resultat);
+          setIsLoading(false);
+        })
+        .catch((err: Error) => {
+          setIsLoading(false);
+          setError(err.message);
+        });
+    }
   }
   return (
     <div className="main">
@@ -106,7 +114,11 @@ function Calculatrice() {
             value={inputDisplay}
             disabled
           />
-          <span className="result-container">{result ? result : 0}</span>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <span className="result-span">{result ? result : 0}</span>
+          )}
         </div>
         <div className="container-lower-part">
           <div className="container-keyboard">
@@ -122,13 +134,18 @@ function Calculatrice() {
             ))}
           </div>
           <div className="container-calculation-buttons">
+            <button className="plus-button" onClick={clear}>
+              CLEAR
+            </button>
             <button className="plus-button" onClick={del}>
               <DeleteLogo width={10} height={10} />
             </button>
             <button className="plus-button" onClick={add}>
               +
             </button>
-            <button className="equal-button">=</button>
+            <button className="equal-button" onClick={calculate}>
+              =
+            </button>
           </div>
         </div>
       </div>
