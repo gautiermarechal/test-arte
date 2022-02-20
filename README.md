@@ -14,7 +14,9 @@ Ce projet est une calculatrice qui permet d'ajouter deux nombres.
 1. `git clone git@github.com:gautiermarechal/test-arte.git` Cloner le repo
 2. `cd test-arte`
 3. `npm install` Installer les dépendences du serveur
-4. `node index.js` Lancer le serveur
-5. `cd client`
-6. `npm install` Installer les dépendences du front-end
-7. `npm run start` Lancer le front-end
+4. `cd client`
+5. `npm install` Installer les dépendences du front-end
+6. `cd ../`
+7. `node index.js` Lancer le serveur
+8. `cd client`
+9. `npm run start` Lancer le front-end
