@@ -1,11 +1,13 @@
-import "../../assets/styles/calculatrice.css";
+import "../../assets/styles/calculatrice.scss";
 import numbers from "../../assets/constants/numbers";
 import { useEffect, useState } from "react";
 import CalculationPayload from "../../assets/types/calculationPayload";
 import CalculationResponse from "../../assets/types/calculationResponse";
-import { ReactComponent as DeleteLogo } from "../../assets/images/delete.svg";
-import { ReactComponent as ClearLogo } from "../../assets/images/clear.svg";
-import Spinner from "../../components/spinner";
+import Loader from "../../components/loader";
+import Button from "../../components/button/index";
+import ButtonVariants from "../../assets/enums/buttonVariants";
+import ButtonSizes from "../../assets/enums/buttonSizes";
+import ButtonFontSizes from "../../assets/enums/buttonFontSizes";
 
 function Calculatrice() {
   const [premierNombre, setPremierNombre] = useState<string | undefined>(
@@ -68,6 +70,7 @@ function Calculatrice() {
     setPremierNombre(undefined);
     setSecondNombre(undefined);
     setIsAdded(false);
+    setResult(0);
   }
 
   function calculate(): void {
@@ -115,7 +118,9 @@ function Calculatrice() {
             disabled
           />
           {isLoading ? (
-            <Spinner />
+            <span className="result-span">
+              <Loader />
+            </span>
           ) : (
             <span className="result-span">{result ? result : 0}</span>
           )}
@@ -123,29 +128,46 @@ function Calculatrice() {
         <div className="container-lower-part">
           <div className="container-keyboard">
             {numbers.map((n: string) => (
-              <button
-                onClick={() => handleNumberClick(n)}
-                key={n}
-                className="number-button"
+              <Button
+                variant={ButtonVariants.STANDARD}
+                size={ButtonSizes.AU}
+                text={n}
                 value={n}
-              >
-                {n}
-              </button>
+                key={n}
+                handler={() => handleNumberClick(n)}
+                font={ButtonFontSizes.LG}
+              />
             ))}
           </div>
           <div className="container-calculation-buttons">
-            <button className="plus-button" onClick={clear}>
-              CLEAR
-            </button>
-            <button className="plus-button" onClick={del}>
-              <DeleteLogo width={10} height={10} />
-            </button>
-            <button className="plus-button" onClick={add}>
-              +
-            </button>
-            <button className="equal-button" onClick={calculate}>
-              =
-            </button>
+            <Button
+              variant={ButtonVariants.PRIMARY}
+              size={ButtonSizes.LG}
+              text="CLEAR"
+              key="clear-button"
+              handler={clear}
+            />
+            <Button
+              variant={ButtonVariants.SECONDARY}
+              size={ButtonSizes.LG}
+              text="DEL"
+              key="del-button"
+              handler={del}
+            />
+            <Button
+              variant={ButtonVariants.SECONDARY}
+              size={ButtonSizes.LG}
+              text="+"
+              key="plus-button"
+              handler={add}
+            />
+            <Button
+              variant={ButtonVariants.SECONDARY}
+              size={ButtonSizes.LG}
+              text="="
+              key="equal-button"
+              handler={calculate}
+            />
           </div>
         </div>
       </div>

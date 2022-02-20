@@ -1,0 +1,16 @@
+@import "variables.scss";
+
+body {
+  margin: 0;
+  background-color: $global-bg;
+  font-family: $global-font-family;
+}
+
+input {
+  font-family: $main-input-font-family;
+  color: $main-input-color;
+}
+
+button {
+  font-family: $global-font-family;
+}
