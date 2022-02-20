@@ -17,6 +17,6 @@ Ce projet est une calculatrice qui permet d'ajouter deux nombres.
 4. `cd client`
 5. `npm install` Installer les dépendences du front-end
 6. `cd ../`
-7. `node index.js` Lancer le serveur
+7. `node index.js` Lancer le serveur. Le serveur roule sur l'addresse suivante: http://localhost:4000/
 8. `cd client`
-9. `npm run start` Lancer le front-end
+9. `npm run start` Lancer le front-end. Le front-end roule sur l'addresse suivante: http://localhost:3000/
