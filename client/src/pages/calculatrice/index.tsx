@@ -100,6 +100,7 @@ function Calculatrice() {
         .then((json: CalculationResponse) => {
           setResult(json.resultat);
           setIsLoading(false);
+          setError("");
         })
         .catch((err: Error) => {
           setIsLoading(false);
@@ -117,12 +118,16 @@ function Calculatrice() {
             value={inputDisplay}
             disabled
           />
-          {isLoading ? (
-            <span className="result-span">
-              <Loader />
-            </span>
+          {!error ? (
+            isLoading ? (
+              <span className="result-span">
+                <Loader />
+              </span>
+            ) : (
+              <span className="result-span">{result ? result : 0}</span>
+            )
           ) : (
-            <span className="result-span">{result ? result : 0}</span>
+            <span className="result-span">ERROR</span>
           )}
         </div>
         <div className="container-lower-part">
